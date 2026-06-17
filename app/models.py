@@ -19,6 +19,7 @@ class Product(Base):
     price = Column(Float)
     stock = Column(Integer)
     image_url = Column(String) # Ruta donde se guardó la imagen
+    has_physical_stock = Column(Boolean, default=True) # <-- NUEVO
     # NUEVO: Enlace con la categoría
     category_id = Column(Integer, ForeignKey("categories.id"), nullable=True)
     category = relationship("Category", back_populates="products")

@@ -41,6 +41,7 @@ async def create_product(
     stock: int = Form(...),
     image: UploadFile = File(...),
     category_id: Optional[int] = Form(None),
+    has_physical_stock: str = Form("true"), # <-- NUEVO: Recibimos el stock físico
     db: Session = Depends(get_db),
     admin_user: str = Depends(get_current_admin)
 ):
@@ -68,7 +69,8 @@ async def create_product(
             price=price,
             stock=stock,
             image_url=public_url,
-            category_id=category_id
+            category_id=category_id,
+            has_physical_stock=(has_physical_stock.lower() == 'true') # <-- NUEVO: Guardamos el booleano
         )
         db.add(new_product)
         db.commit()
@@ -139,6 +141,7 @@ async def edit_product(
     description: str = Form(...),
     price: float = Form(...),
     category_id: Optional[int] = Form(None),
+    has_physical_stock: str = Form("true"), # <-- NUEVO: Recibimos el stock físico
     image: Optional[UploadFile] = File(None), # <-- Es opcional
     db: Session = Depends(get_db),
     admin_user: str = Depends(get_current_admin)
@@ -148,11 +151,12 @@ async def edit_product(
         if not producto:
             raise HTTPException(status_code=404, detail="Producto no encontrado")
 
-        # Actualizamos los datos de texto
+        # Actualizamos los datos de texto y el nuevo booleano
         producto.title = title
         producto.description = description
         producto.price = price
         producto.category_id = category_id
+        producto.has_physical_stock = (has_physical_stock.lower() == 'true') # <-- NUEVO: Actualizamos el booleano
 
         # Si el usuario subió una imagen nueva, la procesamos
         if image and image.filename:
