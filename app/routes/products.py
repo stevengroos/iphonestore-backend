@@ -25,8 +25,8 @@ httpx.AsyncClient.__init__ = _patched_async_init
 
 router = APIRouter()
 
-SUPABASE_URL = "https://fpjuanavqjfpcmjmapjp.supabase.co"
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwanVhbmF2cWpmcGNtam1hcGpwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MTQ4NTU3OSwiZXhwIjoyMDk3MDYxNTc5fQ.BUoe9eEVV6LD0wbKOfxk_o7_m66b3W64BMaqWNS0KfA"
+SUPABASE_URL = "https://ztywhqqmiksxzouakbwe.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0eXdocXFtaWtzeHpvdWFrYndlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjMzNzc0OSwiZXhwIjoyMDk3OTEzNzQ5fQ.xlSn5GYtwCLdJxSygh0w2wbnGO9UH48tG_KgI08KJ0Y"
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 # ================= RUTAS DE PRODUCTOS PRINCIPALES =================
